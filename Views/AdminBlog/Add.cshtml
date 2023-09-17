@@ -1,0 +1,24 @@
+﻿@model selida.Models.ViewModels.AddBlogRequest
+@{
+}
+
+<div>
+    <h1>Add Blog</h1>
+</div>
+
+
+<div class="container py-5">
+    <form method="post">
+        <input type="text" class="form-control" id="heading" placeholder="heading" asp-for="Heading" />
+        <input type="text" class="form-control" id="title" placeholder="title" asp-for="PageTitle" />
+        <input type="text" class="form-control text-area" id="content" placeholder="content" asp-for="Content" />
+        <input type="text" class="form-control" id="shorDesc" placeholder="shortDesc" asp-for="ShortDescription" />
+        <input type="text" class="form-control" id="img" placeholder="img" asp-for="FeatureImageUrl" />
+        <input type="date" class="form-control" id="date" placeholder="date" asp-for="PublishDate" />
+        <input type="text" class="form-control" id="author" placeholder="author" asp-for="Author" />
+
+        <div class="py-2">
+            <button type="submit" class="btn btn-dark">submit</button>
+        </div>
+    </form>
+</div>
