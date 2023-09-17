@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using selida.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<SelidaDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("selidaDb")));
 
 var app = builder.Build();
 
