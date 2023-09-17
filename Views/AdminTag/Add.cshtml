@@ -1,0 +1,20 @@
+﻿@model selida.Models.ViewModels.AddTagRequest
+@{
+}
+
+
+<div>
+    <h1>Add tag</h1>
+</div>
+
+
+<div class="container py-5">
+    <form method="post">
+        <input type="text" class="form-control" id="name" placeholder="name" asp-for="Name"/>
+        <input type="text" class="form-control" id="displayName" placeholder="display name" asp-for="displayName"/>
+
+        <div class="py-2">
+            <button type="submit" class="btn btn-dark">submit</button>
+        </div>
+    </form>
+</div>
