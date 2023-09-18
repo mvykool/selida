@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using selida.Data;
 
@@ -11,9 +12,11 @@ using selida.Data;
 namespace selida.Migrations
 {
     [DbContext(typeof(SelidaDbContext))]
-    partial class SelidaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230918110827_NullableTypes")]
+    partial class NullableTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
