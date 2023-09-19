@@ -21,7 +21,7 @@
             @foreach (var post in Model)
             {
                 <tr>
-                    <td>@post.Heading</td>
+                    <td><a href="@Url.Action("Details", "Posts", new { id = post.Id })">@post.Heading</a></td>
                     <td>@post.PageTitle</td>
                     <td>@post.PublishDate.ToString("yyyy-MM-dd")</td>
                     <!-- Add more columns as needed -->
