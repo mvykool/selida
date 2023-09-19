@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using selida.Data;
 using selida.Models;
 using System.Diagnostics;
 
@@ -8,14 +9,21 @@ namespace selida.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly SelidaDbContext selidaDbContext;
+
+        public HomeController(ILogger<HomeController> logger, SelidaDbContext selidaDbContext)
         {
             _logger = logger;
+            this.selidaDbContext = selidaDbContext;
         }
+
+        [HttpGet]
+        // GET: Latest Posts
 
         public IActionResult Index()
         {
-            return View();
+            var posts = selidaDbContext.BlogPosts.ToList();
+            return View(posts);
         }
 
         public IActionResult Privacy()

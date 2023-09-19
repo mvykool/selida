@@ -1,10 +1,32 @@
-﻿@{
+﻿@model IEnumerable<selida.Models.Domain.BlogPost>
+@{
     ViewData["Title"] = "Home Page";
+    
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-
+    <table>
+        <thead>
+            <tr>
+                <th>Heading</th>
+                <th>Page Title</th>
+                <th>Publish Date</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var post in Model)
+            {
+                <tr>
+                    <td>@post.Heading</td>
+                    <td>@post.PageTitle</td>
+                    <td>@post.PublishDate.ToString("yyyy-MM-dd")</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
