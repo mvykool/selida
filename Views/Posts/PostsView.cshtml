@@ -18,7 +18,8 @@
                 <td><a href="@Url.Action("Details", "Posts", new { id = post.Id })">@post.Heading</a></td>
                 <td>@post.PageTitle</td>
                 <td>@post.PublishDate.ToString("yyyy-MM-dd")</td>
-                <!-- Add more columns as needed -->
+
+                <td><a href="@Url.Action("Edit", "Posts", new { id = post.Id })">Edit</a></td>
             </tr>
         }
     </tbody>
