@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using selida.Data;
 using selida.Models.Domain;
 using System.Reflection.Metadata;
@@ -72,15 +73,18 @@ namespace selida.Controllers
             {
                 return NotFound();
             }
-
-            // Update the post properties with values from the editBlogRequest.
-            post.Heading = editBlogRequest.Heading;
-            post.PageTitle = editBlogRequest.PageTitle;
-            post.ShortDescription = editBlogRequest.ShortDescription;
-            post.Content = editBlogRequest.Content;
-            post.Author = editBlogRequest.Author;
-            post.PublishDate = editBlogRequest.PublishDate;
-            post.FeatureImageUrl = editBlogRequest.FeatureImageUrl;
+            else
+            {
+                // Update the post properties with values from the editBlogRequest.
+                post.Heading = editBlogRequest.Heading;
+                post.PageTitle = editBlogRequest.PageTitle;
+                post.Content = editBlogRequest.Content;
+                post.ShortDescription = editBlogRequest.ShortDescription;
+                post.FeatureImageUrl = editBlogRequest.FeatureImageUrl;
+                post.PublishDate = editBlogRequest.PublishDate;
+                post.Author = editBlogRequest.Author;
+            }
+            
 
             // Save changes to the database.
             selidaDbContext.BlogPosts.Add(post);
@@ -90,6 +94,34 @@ namespace selida.Controllers
 
         }
 
+        //PUT
+        [HttpPut("{id}")]
+        public async Task<ActionResult<BlogPost>> UpdateBlog(Guid id, BlogPost editBlogRequest)
+        {
+            if (id == Guid.Empty)
+            {
+                return BadRequest("Invalid post ID");
+            }
+
+            var post = await selidaDbContext.BlogPosts.FindAsync(id);
+
+            if (post == null)
+            {
+                return NotFound("Post not found");
+            }
+
+            post.Heading = editBlogRequest.Heading;
+            post.PageTitle = editBlogRequest.PageTitle;
+            post.Content = editBlogRequest.Content;
+            post.ShortDescription = editBlogRequest.ShortDescription;
+            post.FeatureImageUrl = editBlogRequest.FeatureImageUrl;
+            post.PublishDate = editBlogRequest.PublishDate;
+            post.Author = editBlogRequest.Author;
+
+            await selidaDbContext.SaveChangesAsync();
+
+            return Ok(post);
+        }
 
     }
 }
