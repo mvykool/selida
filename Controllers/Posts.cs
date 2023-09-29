@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using selida.Data;
-using selida.Models.Domain;
-using System.Reflection.Metadata;
+
 
 namespace selida.Controllers
 {
@@ -23,7 +21,6 @@ namespace selida.Controllers
 
             var posts = selidaDbContext.BlogPosts;
             return View(posts);
-  
         }
 
         [HttpGet]
